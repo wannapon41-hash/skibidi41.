@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCrafters Duo: ภารกิจโค้ดดิ้ง</title>
+    <style>
+        /* CSS สำหรับ Game Layout */
+        body {
+            font-family: 'Consolas', 'Courier New', monospace; /* ใช้ฟอนต์สำหรับโค้ด */
+            background-color: #1e1e1e; /* พื้นหลังสีเข้มสไตล์ Editor */
+            color: #d4d4d4;
+            margin: 0;
+            display: grid;
+            grid-template-rows: 50px 1fr; /* แถวบนสำหรับปุ่ม/หัวข้อ, แถวล่างสำหรับพื้นที่ทำงาน */
+            height: 100vh;
+        }
+
+        .top-bar {
+            background-color: #333;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .top-bar h1 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #f1c40f;
+        }
+
+        .workspace {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* แบ่งพื้นที่ทำงานเป็น 2 คอลัมน์ (Editor และ Output) */
+            gap: 1px;
+            background-color: #000;
+        }
+
+        .editor-area {
+            display: grid;
+            grid-template-rows: 1fr 1fr; /* แบ่งฝั่ง Editor เป็น HTML และ CSS */
+            gap: 1px;
+        }
+
+        .code-panel {
+            background-color: #252526; /* สีพื้นหลัง Editor */
+            padding: 10px;
+            overflow: auto; /* ให้เลื่อนได้ถ้าโค้ดเยอะ */
+            border: 1px solid #000;
+        }
+
+        .code-panel h3 {
+            margin-top: 0;
+            color: #569cd6; /* สีน้ำเงินสำหรับชื่อภาษา */
+            border-bottom: 1px solid #569cd6;
+            padding-bottom: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            height: calc(100% - 30px); /* ลบความสูงของ h3 ออก */
+            background: #252526;
+            color: #d4d4d4;
+            border: none;
+            resize: none;
+            padding: 5px;
+            font-size: 0.9em;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .output-panel {
+            background-color: white; /* พื้นที่แสดงผลสีขาวเพื่อให้เห็นผลลัพธ์ชัดเจน */
+            color: #333;
+            padding: 10px;
+            overflow: auto;
+            position: relative;
+        }
+        
+        .output-panel h3 {
+             color: #9cd656;
+             border-bottom: 1px solid #9cd656;
+        }
+
+        .action-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .action-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <h1>ภารกิจ: แก้ไขปุ่ม (Task: Fix the Button)</h1>
+        <div>
+            <button id="run-code" class="action-button">▶ รันโค้ด</button>
+            <a href="index.html" class="action-button" style="margin-left: 10px;">🏠 เมนูหลัก</a>
+        </div>
+    </div>
+
+    <div class="workspace">
+        <div class="editor-area">
+            
+            <div class="code-panel html-editor">
+                <h3>&lt;HTML&gt; โครงสร้าง</h3>
+                <textarea id="html-code" spellcheck="false">
+&lt;!-- โครงสร้างปัจจุบัน: ปุ่มนี้ยังไม่สวยงาม --&gt;
+&lt;div id="output-content"&gt;
+    &lt;h2&gt;Hello CodeCrafters!&lt;/h2&gt;
+    &lt;button class="broken-button"&gt;Click Me&lt;/button&gt;
+&lt;/div&gt;
+                </textarea>
+            </div>
+
+            <div class="code-panel css-editor">
+                <h3>{CSS} รูปแบบ</h3>
+                <textarea id="css-code" spellcheck="false">
+/* ภารกิจ: ใส่ CSS ให้ปุ่ม .broken-button สวยงามขึ้น */
+.broken-button {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+    font-size: 16px;
+}
+                </textarea>
+            </div>
+        </div>
+
+        <div class="output-panel">
+            <h3>Output Display (ผลลัพธ์)</h3>
+            <iframe id="live-output" style="width: 100%; height: 90%; border: none;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // โค้ด JavaScript สำหรับหน้า Game Logic (จะเขียนเพิ่มในขั้นต่อไป)
+        
+        const htmlEditor = document.getElementById('html-code');
+        const cssEditor = document.getElementById('css-code');
+        const outputFrame = document.getElementById('live-output');
+        const runButton = document.getElementById('run-code');
+
+        function renderOutput() {
+            const htmlContent = htmlEditor.value;
+            const cssContent = cssEditor.value;
+
+            // สร้างเนื้อหาที่จะแสดงใน iframe
+            const outputDoc = `
+                <html>
+                <head>
+                    <style>${cssContent}</style>
+                </head>
+                <body>
+                    ${htmlContent}
+                </body>
+                </html>
+            `;
+            
+            // เขียนเนื้อหาลงใน iframe เพื่อแสดงผลลัพธ์แบบสด
+            outputFrame.srcdoc = outputDoc;
+        }
+        
+        // รันโค้ดครั้งแรกเมื่อโหลดหน้า
+        renderOutput();
+
+        // เมื่อคลิกปุ่ม "รันโค้ด"
+        runButton.addEventListener('click', renderOutput);
+
+        // (เพิ่มฟังก์ชันนี้ถ้าต้องการให้แสดงผลลัพธ์แบบ real-time ขณะพิมพ์)
+        // htmlEditor.addEventListener('input', renderOutput);
+        // cssEditor.addEventListener('input', renderOutput);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCrafters Duo: Main Menu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #2c3e50; /* สีพื้นหลังเข้มเหมือนเกม */
+            color: #ecf0f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .main-menu {
+            background: rgba(44, 62, 80, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+        h1 {
+            color: #f1c40f; /* สีทอง/เหลืองสำหรับชื่อเกม */
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px #c0392b;
+        }
+        h2 {
+            font-size: 1.2em;
+            margin-top: 0;
+            margin-bottom: 30px;
+            color: #bdc3c7;
+        }
+        .menu-options button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: #3498db; /* สีปุ่มหลัก */
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .menu-options button:hover {
+            background-color: #2980b9;
+            transform: scale(1.02);
+        }
+        .menu-options button:last-child {
+            background-color: #e74c3c; /* ปุ่มปิด/ออก สีแดง */
+        }
+        .menu-options button:last-child:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-menu">
+        <h1>CodeCrafters Duo</h1>
+        <h2>The Interactive Journey</h2>
+
+        <div class="menu-options">
+            <button id="start-game">🚀 เริ่มภารกิจโค้ดดิ้ง</button>
+            <button id="how-to-play">📖 คู่มือผู้สร้าง</button>
+            <button id="view-creators">👥 ห้องผู้จัดทำ</button>
+            <button id="exit-game">❌ ออกจากโปรเจกต์</button>
+        </div>
+    </div>
+	<script src="script.js"></script>
+</body>
+</html>

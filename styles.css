@@ -1,0 +1,54 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #2c3e50; 
+    color: #ecf0f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+.main-menu {
+    background: rgba(44, 62, 80, 0.8);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+h1 {
+    color: #f1c40f; 
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px #c0392b;
+}
+h2 {
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #bdc3c7;
+}
+.menu-options button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db; 
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+.menu-options button:hover {
+    background-color: #2980b9;
+    transform: scale(1.02);
+}
+.menu-options button:last-child {
+    background-color: #e74c3c; 
+}
+.menu-options button:last-child:hover {
+    background-color: #c0392b;
+}
